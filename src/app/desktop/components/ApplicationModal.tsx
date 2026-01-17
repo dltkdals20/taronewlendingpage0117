@@ -51,6 +51,9 @@ export default function ApplicationModal({ isOpen, onClose }: ApplicationModalPr
             // With no-cors, we can't verify the server response, but request was sent.
             setIsSuccess(true);
 
+            // Meta Pixel Event
+            (window as any).fbq('track', 'SubmitApplication');
+
             // Allow user to close manually which will then reset the form upon next open if needed
             // But we typically reset form when modal closes or when "OK" is clicked.
 
