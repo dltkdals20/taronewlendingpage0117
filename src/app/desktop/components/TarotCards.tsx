@@ -37,12 +37,12 @@ const Card = ({ title, symbol, number, gradient, border, rotate, delay, imgSrc }
     </motion.div>
 );
 
-export default function TarotCards() {
+export default function TarotCards({ className = "" }: { className?: string }) {
     return (
-        <div className="relative w-full h-[350px] md:h-[600px] flex items-center justify-center -mt-10 md:-mt-10 overflow-visible scale-[0.45] md:scale-100 origin-top">
+        <div className={`relative w-full h-[280px] md:h-[450px] flex items-center justify-center overflow-visible origin-top ${className}`}>
 
             {/* Left Card - Moon */}
-            <div className="absolute top-1/2 left-1/2 transform -translate-x-[110%] -translate-y-[45%] z-10">
+            <div className="absolute top-1/2 left-1/2 transform -translate-x-[85%] -translate-y-[45%] z-10">
                 <Card
                     title="THE MOON"
                     symbol="☽"
@@ -56,7 +56,7 @@ export default function TarotCards() {
             </div>
 
             {/* Right Card - Star */}
-            <div className="absolute top-1/2 left-1/2 transform translate-x-[10%] -translate-y-[45%] z-10">
+            <div className="absolute top-1/2 left-1/2 transform -translate-x-[15%] -translate-y-[45%] z-10">
                 <Card
                     title="THE STAR"
                     symbol="★"
@@ -71,41 +71,16 @@ export default function TarotCards() {
 
             {/* Center Card - Sun (Main) */}
             <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20">
-                <motion.div
-                    whileHover={{ scale: 1.05 }}
-                    transition={{ type: "spring", stiffness: 300 }}
-                >
-                    <div className="relative w-[320px] h-[500px] rounded-2xl p-1 shadow-[0_0_50px_rgba(255,165,0,0.3)] bg-gradient-to-br from-[#ffd700] via-[#ffaa00] to-[#ff4500]">
-                        <div className="w-full h-full rounded-xl bg-[#1a1a2e] relative overflow-hidden flex flex-col">
-                            {/* Inner Card Design */}
-                            <div className="h-2/3 relative border-b-4 border-[#ffd700] overflow-hidden group">
-                                <img
-                                    src={sunTarotImg}
-                                    alt="The Sun Tarot Card"
-                                    className="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-110"
-                                />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
-                            </div>
-                            <div className="h-1/3 bg-white p-4 flex flex-col items-center justify-center text-center relative overflow-hidden">
-                                <motion.div
-                                    className="text-transparent bg-clip-text bg-gradient-to-br from-[#3c0366] to-[#8200db] text-7xl font-black leading-none filter drop-shadow-sm px-1"
-                                    animate={{ scale: [1, 1.02, 1] }}
-                                    transition={{ duration: 2, repeat: Infinity }}
-                                >
-                                    60<span className="text-4xl align-top">%</span>
-                                </motion.div>
-                                <div className="text-[#ff4500] font-black tracking-[0.3em] text-xl -mt-1 mb-3">OFF</div>
-                                <motion.div
-                                    className="bg-gradient-to-r from-[#3c0366] to-[#59168b] text-[#ffd700] px-4 py-1.5 rounded-full text-sm font-bold shadow-lg border border-[#ffd700]/30 whitespace-nowrap"
-                                    whileHover={{ scale: 1.05 }}
-                                    whileTap={{ scale: 0.95 }}
-                                >
-                                    신년 운세 대박 ✨
-                                </motion.div>
-                            </div>
-                        </div>
-                    </div>
-                </motion.div>
+                <Card
+                    title="THE SUN"
+                    symbol="☀"
+                    number="XIX"
+                    gradient="from-[#ffd700] via-[#ffaa00] to-[#ff4500]"
+                    border="border-[#ffd700]"
+                    rotate={0}
+                    delay={0.3}
+                    imgSrc={sunTarotImg}
+                />
             </div>
         </div>
     );

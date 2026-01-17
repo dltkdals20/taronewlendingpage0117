@@ -2,7 +2,7 @@ import { motion } from "motion/react";
 
 export default function HeroSection() {
     return (
-        <div className="relative w-full flex flex-col items-center pt-12 md:pt-20 pb-10 text-center z-10 box-border px-4">
+        <div className="relative w-full flex flex-col items-center pt-12 md:pt-20 pb-2 text-center z-10 box-border px-4">
             {/* Top Banner */}
             <div className="mb-6">
                 <motion.div

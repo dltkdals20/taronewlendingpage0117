@@ -1,5 +1,5 @@
 import HeroSection from "./components/HeroSection";
-import TarotCards from "./components/TarotCards";
+import PricingCard from "./components/PricingCard";
 import InfoSection from "./components/InfoSection";
 import StepsSection from "./components/StepsSection";
 import DetailsSection from "./components/DetailsSection";
@@ -25,7 +25,7 @@ export default function LandingPage() {
 
                 <div className="container mx-auto px-4 relative z-10">
                     <HeroSection />
-                    <TarotCards />
+                    <PricingCard />
                 </div>
 
                 {/* Curved bottom transition (optional, keeping it simple for now) */}

@@ -69,7 +69,7 @@ export default function StepsSection() {
         },
         {
             step: "02",
-            title: "24시간 이내 해석본 발송",
+            title: "타로마스터가 직접 해석한 결과 발송(24시간 이내)",
             description: "직접 뽑은 카드를 바탕으로\n타로마스터가 24시간 내 해석본을 보내드려요.",
             icon: "📩",
             customIcon: <LetterSendAnimation />,
@@ -79,7 +79,7 @@ export default function StepsSection() {
     ];
 
     return (
-        <div className="w-full bg-white py-20 px-4">
+        <div className="w-full bg-white pt-10 pb-20 px-4">
             <div className="max-w-5xl mx-auto">
                 <div className="text-center mb-16">
                     <h2 className="text-3xl font-black text-slate-900 flex items-center justify-center gap-2">

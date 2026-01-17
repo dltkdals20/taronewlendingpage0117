@@ -1,6 +1,7 @@
 import { motion } from "motion/react";
 import { useState } from "react";
 import ApplicationModal from "./ApplicationModal";
+import TarotCards from "./TarotCards";
 
 export default function InfoSection() {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -22,12 +23,16 @@ export default function InfoSection() {
                     <span className="text-[#8200db]">행운 키워드 13가지</span> ✨
                 </h2>
 
-                <p className="text-slate-600 text-lg mb-12">
+                <p className="text-slate-600 text-lg mb-8">
                     나의 올해 행운 키워드는? 지금 바로 13장의 타로 카드를 뽑아 확인해보세요.
                 </p>
 
+                <div className="w-full flex justify-center mt-0 mb-0">
+                    <TarotCards className="scale-[0.65] md:scale-75 origin-top" />
+                </div>
+
                 {/* Keywords Grid Preview */}
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-20">
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
                     {keywords.map((item, index) => (
                         <motion.div
                             key={index}
@@ -38,21 +43,6 @@ export default function InfoSection() {
                             <span className="font-bold text-slate-700">{item.text}</span>
                         </motion.div>
                     ))}
-                </div>
-
-                {/* CTA Section */}
-                <div className="relative w-full max-w-2xl mx-auto mt-10">
-                    <motion.button
-                        onClick={() => setIsModalOpen(true)}
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        className="w-full bg-gradient-to-r from-[#59168b] to-[#8200db] text-white text-2xl md:text-4xl font-black py-8 rounded-full shadow-[0_20px_50px_-12px_rgba(89,22,139,0.5)] border-4 border-[#ad46ff]"
-                    >
-                        신청하기
-                    </motion.button>
-                    <p className="mt-6 text-2xl font-bold text-slate-800">
-                        지금 바로 신청하세요!
-                    </p>
                 </div>
             </div>
 
