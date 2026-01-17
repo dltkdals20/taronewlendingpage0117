@@ -12,7 +12,9 @@ export default function ApplicationModal({ isOpen, onClose }: ApplicationModalPr
     const [agreed, setAgreed] = useState(false);
     const [showDetails, setShowDetails] = useState(false);
 
-    const handleSubmit = () => {
+    const [isSubmitting, setIsSubmitting] = useState(false);
+
+    const handleSubmit = async () => {
         if (!name || !phone) {
             alert("이름과 휴대폰 번호를 입력해주세요.");
             return;
@@ -21,8 +23,38 @@ export default function ApplicationModal({ isOpen, onClose }: ApplicationModalPr
             alert("개인정보 수집 · 이용에 동의해주세요.");
             return;
         }
-        alert("신청이 완료되었습니다! (데모)");
-        onClose();
+
+        setIsSubmitting(true);
+
+        try {
+            const response = await fetch("https://webhook-processor-production-bfe2.up.railway.app/webhook/a8729524-5a79-42f8-99c4-c2e49e28b3fe", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    name: name,
+                    phone: phone,
+                    timestamp: new Date().toISOString()
+                }),
+            });
+
+            if (response.ok) {
+                alert("신청이 완료되었습니다!");
+                onClose();
+                // Reset form
+                setName("");
+                setPhone("");
+                setAgreed(false);
+            } else {
+                alert("오류가 발생했습니다. 잠시 후 다시 시도해주세요.");
+            }
+        } catch (error) {
+            console.error("Submission error:", error);
+            alert("서버 연결에 실패했습니다. 다시 시도해주세요.");
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     return (
@@ -122,9 +154,10 @@ export default function ApplicationModal({ isOpen, onClose }: ApplicationModalPr
                             {/* Submit Button */}
                             <button
                                 onClick={handleSubmit}
-                                className="w-full bg-gradient-to-r from-[#59168b] to-[#8200db] text-white font-bold text-xl py-4 rounded-2xl shadow-lg hover:shadow-purple-200 active:scale-[0.98] transition-all"
+                                disabled={isSubmitting}
+                                className={`w-full bg-gradient-to-r from-[#59168b] to-[#8200db] text-white font-bold text-xl py-4 rounded-2xl shadow-lg transition-all ${isSubmitting ? "opacity-70 cursor-not-allowed" : "hover:shadow-purple-200 active:scale-[0.98]"}`}
                             >
-                                신청하기
+                                {isSubmitting ? "접수 중..." : "신청하기"}
                             </button>
 
                         </motion.div>
