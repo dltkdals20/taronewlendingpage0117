@@ -11,6 +11,7 @@ export default function ApplicationModal({ isOpen, onClose }: ApplicationModalPr
     const [phone, setPhone] = useState("");
     const [agreed, setAgreed] = useState(false);
     const [showDetails, setShowDetails] = useState(false);
+    const [isSuccess, setIsSuccess] = useState(false);
 
     const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -48,12 +49,10 @@ export default function ApplicationModal({ isOpen, onClose }: ApplicationModalPr
             });
 
             // With no-cors, we can't verify the server response, but request was sent.
-            alert("신청이 완료되었습니다!");
-            onClose();
-            // Reset form
-            setName("");
-            setPhone("");
-            setAgreed(false);
+            setIsSuccess(true);
+
+            // Allow user to close manually which will then reset the form upon next open if needed
+            // But we typically reset form when modal closes or when "OK" is clicked.
 
         } catch (error) {
             console.error("Submission error:", error);
@@ -61,6 +60,17 @@ export default function ApplicationModal({ isOpen, onClose }: ApplicationModalPr
         } finally {
             setIsSubmitting(false);
         }
+    };
+
+    const handleClose = () => {
+        // Reset everything when closing
+        onClose();
+        setTimeout(() => {
+            setName("");
+            setPhone("");
+            setAgreed(false);
+            setIsSuccess(false);
+        }, 200);
     };
 
     return (
@@ -72,7 +82,7 @@ export default function ApplicationModal({ isOpen, onClose }: ApplicationModalPr
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        onClick={onClose}
+                        onClick={handleClose}
                         className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4"
                     >
                         {/* Modal Container */}
@@ -85,86 +95,109 @@ export default function ApplicationModal({ isOpen, onClose }: ApplicationModalPr
                         >
                             {/* Close Button */}
                             <button
-                                onClick={onClose}
+                                onClick={handleClose}
                                 className="absolute top-6 right-6 text-slate-400 hover:text-slate-600 font-medium text-lg"
                             >
                                 닫기
                             </button>
 
-                            {/* Header */}
-                            <h2 className="text-3xl font-bold text-slate-900 mb-2">신청하기</h2>
-                            <p className="text-slate-500 mb-8">이름과 휴대폰 번호를 입력해주세요.</p>
-
-                            {/* Form */}
-                            <div className="space-y-6 mb-8">
-                                <div>
-                                    <label className="block text-slate-900 font-bold mb-2">이름</label>
-                                    <input
-                                        type="text"
-                                        placeholder="홍길동"
-                                        value={name}
-                                        onChange={(e) => setName(e.target.value)}
-                                        className="w-full border-2 border-slate-200 rounded-xl px-4 py-3 text-lg outline-none focus:border-[#8200db] transition-colors"
-                                    />
+                            {isSuccess ? (
+                                <div className="flex flex-col items-center justify-center py-8 text-center animate-in fade-in zoom-in duration-300">
+                                    <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mb-6">
+                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                                            <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                                        </svg>
+                                    </div>
+                                    <h2 className="text-3xl font-bold text-slate-900 mb-4">신청 완료!</h2>
+                                    <p className="text-slate-600 mb-8 leading-relaxed">
+                                        타로 상담 신청이 성공적으로 접수되었습니다.<br />
+                                        곧 담당 타로 리더가 연락드리겠습니다.
+                                    </p>
+                                    <button
+                                        onClick={handleClose}
+                                        className="w-full bg-slate-900 text-white font-bold text-xl py-4 rounded-2xl hover:bg-slate-800 transition-colors shadow-lg"
+                                    >
+                                        확인
+                                    </button>
                                 </div>
-                                <div>
-                                    <label className="block text-slate-900 font-bold mb-2">휴대폰 번호</label>
-                                    <input
-                                        type="tel"
-                                        placeholder="01012345678"
-                                        value={phone}
-                                        onChange={(e) => setPhone(e.target.value)}
-                                        className="w-full border-2 border-slate-200 rounded-xl px-4 py-3 text-lg outline-none focus:border-[#8200db] transition-colors"
-                                    />
-                                </div>
-                            </div>
+                            ) : (
+                                <>
+                                    {/* Header */}
+                                    <h2 className="text-3xl font-bold text-slate-900 mb-2">신청하기</h2>
+                                    <p className="text-slate-500 mb-8">이름과 휴대폰 번호를 입력해주세요.</p>
 
-                            {/* Agreement */}
-                            <div className="mb-8">
-                                <div className="border border-slate-200 rounded-xl p-4 flex items-center gap-3 hover:border-[#ad46ff] transition-colors">
-                                    <input
-                                        type="checkbox"
-                                        id="agreement"
-                                        checked={agreed}
-                                        onChange={(e) => setAgreed(e.target.checked)}
-                                        className="w-5 h-5 accent-[#8200db] cursor-pointer"
-                                    />
-                                    <label htmlFor="agreement" className="text-slate-600 text-sm flex-1 cursor-pointer">
-                                        개인정보 수집 · 이용에 동의합니다. (필수, <button onClick={() => setShowDetails(!showDetails)} className="underline text-slate-800 font-medium">상세보기</button>)
-                                    </label>
-                                </div>
+                                    {/* Form */}
+                                    <div className="space-y-6 mb-8">
+                                        <div>
+                                            <label className="block text-slate-900 font-bold mb-2">이름</label>
+                                            <input
+                                                type="text"
+                                                placeholder="홍길동"
+                                                value={name}
+                                                onChange={(e) => setName(e.target.value)}
+                                                className="w-full border-2 border-slate-200 rounded-xl px-4 py-3 text-lg outline-none focus:border-[#8200db] transition-colors"
+                                            />
+                                        </div>
+                                        <div>
+                                            <label className="block text-slate-900 font-bold mb-2">휴대폰 번호</label>
+                                            <input
+                                                type="tel"
+                                                placeholder="01012345678"
+                                                value={phone}
+                                                onChange={(e) => setPhone(e.target.value)}
+                                                className="w-full border-2 border-slate-200 rounded-xl px-4 py-3 text-lg outline-none focus:border-[#8200db] transition-colors"
+                                            />
+                                        </div>
+                                    </div>
 
-                                {/* Agreement Details */}
-                                <AnimatePresence>
-                                    {showDetails && (
-                                        <motion.div
-                                            initial={{ height: 0, opacity: 0 }}
-                                            animate={{ height: "auto", opacity: 1 }}
-                                            exit={{ height: 0, opacity: 0 }}
-                                            className="overflow-hidden"
-                                        >
-                                            <div className="bg-slate-50 text-xs text-slate-500 p-4 rounded-lg mt-2 leading-relaxed whitespace-pre-wrap">
-                                                {`인비랩은(는) 고객 지원을 위해 아래와 같이 개인정보를 수집·이용합니다.
+                                    {/* Agreement */}
+                                    <div className="mb-8">
+                                        <div className="border border-slate-200 rounded-xl p-4 flex items-center gap-3 hover:border-[#ad46ff] transition-colors">
+                                            <input
+                                                type="checkbox"
+                                                id="agreement"
+                                                checked={agreed}
+                                                onChange={(e) => setAgreed(e.target.checked)}
+                                                className="w-5 h-5 accent-[#8200db] cursor-pointer"
+                                            />
+                                            <label htmlFor="agreement" className="text-slate-600 text-sm flex-1 cursor-pointer">
+                                                개인정보 수집 · 이용에 동의합니다. (필수, <button onClick={() => setShowDetails(!showDetails)} className="underline text-slate-800 font-medium">상세보기</button>)
+                                            </label>
+                                        </div>
+
+                                        {/* Agreement Details */}
+                                        <AnimatePresence>
+                                            {showDetails && (
+                                                <motion.div
+                                                    initial={{ height: 0, opacity: 0 }}
+                                                    animate={{ height: "auto", opacity: 1 }}
+                                                    exit={{ height: 0, opacity: 0 }}
+                                                    className="overflow-hidden"
+                                                >
+                                                    <div className="bg-slate-50 text-xs text-slate-500 p-4 rounded-lg mt-2 leading-relaxed whitespace-pre-wrap">
+                                                        {`인비랩은(는) 고객 지원을 위해 아래와 같이 개인정보를 수집·이용합니다.
 
 1) 개인정보 수집 목적 : 회원관리, 고객 상담, 고지사항 전달
 2) 개인정보 수집 항목 : 이름, 전화번호, 이메일
 3) 보유 및 이용기간 : 회원 탈퇴시까지
 
 * 개인정보 수집 및 이용에 동의하지 않을 권리가 있으며, 동의를 거부할 경우에는 상품 제공이 불가합니다.`}
-                                            </div>
-                                        </motion.div>
-                                    )}
-                                </AnimatePresence>
-                            </div>
+                                                    </div>
+                                                </motion.div>
+                                            )}
+                                        </AnimatePresence>
+                                    </div>
 
-                            {/* Submit Button */}
-                            <button
-                                onClick={handleSubmit}
-                                disabled={isSubmitting}
-                                className={`w-full bg-gradient-to-r from-[#59168b] to-[#8200db] text-white font-bold text-xl py-4 rounded-2xl shadow-lg transition-all ${isSubmitting ? "opacity-70 cursor-not-allowed" : "hover:shadow-purple-200 active:scale-[0.98]"}`}
-                            >
-                                {isSubmitting ? "접수 중..." : "신청하기"}
-                            </button>
+                                    {/* Submit Button */}
+                                    <button
+                                        onClick={handleSubmit}
+                                        disabled={isSubmitting}
+                                        className={`w-full bg-gradient-to-r from-[#59168b] to-[#8200db] text-white font-bold text-xl py-4 rounded-2xl shadow-lg transition-all ${isSubmitting ? "opacity-70 cursor-not-allowed" : "hover:shadow-purple-200 active:scale-[0.98]"}`}
+                                    >
+                                        {isSubmitting ? "접수 중..." : "신청하기"}
+                                    </button>
+                                </>
+                            )}
 
                         </motion.div>
                     </motion.div>
