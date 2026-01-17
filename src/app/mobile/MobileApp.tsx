@@ -6,9 +6,14 @@ import DetailsSection from "../desktop/components/DetailsSection";
 import QuestionSection from "../desktop/components/QuestionSection";
 import InterpretationSection from "../desktop/components/InterpretationSection";
 import ReviewsSection from "../desktop/components/ReviewsSection";
+import { motion } from "motion/react";
+import { useState } from "react";
+import ApplicationModal from "../desktop/components/ApplicationModal";
 import PricingSection from "../desktop/components/PricingSection";
 
 export default function MobileApp() {
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
     return (
         <div className="w-full min-h-screen bg-white">
             {/* Top Dark Section */}
@@ -26,6 +31,18 @@ export default function MobileApp() {
                 <div className="container mx-auto px-4 relative z-10">
                     <HeroSection />
                     <TarotCards />
+
+                    {/* Mobile Only CTA Button */}
+                    <div className="w-full pb-8 pt-4 px-4 flex justify-center">
+                        <motion.button
+                            onClick={() => setIsModalOpen(true)}
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            className="w-full max-w-sm bg-gradient-to-r from-[#59168b] to-[#8200db] text-white text-2xl font-black py-6 rounded-full shadow-[0_0_30px_rgba(255,255,255,0.3)] border-4 border-[#dab2ff]"
+                        >
+                            내 운세 확인하기 ✨
+                        </motion.button>
+                    </div>
                 </div>
             </div>
 
@@ -42,6 +59,11 @@ export default function MobileApp() {
             <div className="bg-slate-900 py-8 text-center text-white/50 text-xs">
                 © 2026 New Year Tarot. All rights reserved.
             </div>
+
+            <ApplicationModal
+                isOpen={isModalOpen}
+                onClose={() => setIsModalOpen(false)}
+            />
         </div>
     );
 }
