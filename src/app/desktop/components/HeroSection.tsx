@@ -18,9 +18,11 @@ export default function HeroSection() {
 
             {/* Main Heading */}
             <div className="relative z-10 mb-8">
-                <h1 className="text-3xl md:text-[64px] font-black leading-[1.2] md:leading-[1.1] text-transparent bg-clip-text bg-gradient-to-b from-[#ffd700] to-[#ffdf20] drop-shadow-[0_4px_4px_rgba(0,0,0,0.25)] break-keep">
+                <h1 className="text-5xl md:text-[64px] font-black leading-[1.2] md:leading-[1.1] text-transparent bg-clip-text bg-gradient-to-b from-[#ffd700] to-[#ffdf20] drop-shadow-[0_4px_4px_rgba(0,0,0,0.25)] break-keep">
                     2026 병오년<br />
-                    신년 운세 대박 타로 보기
+                    신년 운세 대박<br className="md:hidden" />
+                    <span className="hidden md:inline"> </span>
+                    타로 보기
                 </h1>
 
                 {/* Decorative Stars around heading */}

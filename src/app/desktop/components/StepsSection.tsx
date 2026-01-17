@@ -114,7 +114,7 @@ export default function StepsSection() {
                                 </div>
 
                                 {/* Visual/Icon */}
-                                <div className="w-48 h-48 flex items-center justify-center shrink-0">
+                                <div className="w-32 h-32 md:w-48 md:h-48 flex items-center justify-center shrink-0">
                                     {item.customIcon ? (
                                         item.customIcon
                                     ) : (
