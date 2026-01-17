@@ -1,6 +1,10 @@
 import { motion } from "motion/react";
+import { useState } from "react";
+import ApplicationModal from "./ApplicationModal";
 
 export default function InfoSection() {
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
     const keywords = [
         { icon: "💰", text: "금전" },
         { icon: "❤️", text: "연애" },
@@ -39,9 +43,10 @@ export default function InfoSection() {
                 {/* CTA Section */}
                 <div className="relative w-full max-w-2xl mx-auto mt-10">
                     <motion.button
+                        onClick={() => setIsModalOpen(true)}
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
-                        className="w-full bg-gradient-to-r from-[#ff8904] to-[#ff6900] text-white text-4xl font-black py-8 rounded-full shadow-[0_20px_50px_-12px_rgba(255,105,0,0.5)] border-4 border-[#fff085]"
+                        className="w-full bg-gradient-to-r from-[#59168b] to-[#8200db] text-white text-4xl font-black py-8 rounded-full shadow-[0_20px_50px_-12px_rgba(89,22,139,0.5)] border-4 border-[#ad46ff]"
                     >
                         신청하기
                     </motion.button>
@@ -50,6 +55,11 @@ export default function InfoSection() {
                     </p>
                 </div>
             </div>
+
+            <ApplicationModal
+                isOpen={isModalOpen}
+                onClose={() => setIsModalOpen(false)}
+            />
         </div>
     );
 }

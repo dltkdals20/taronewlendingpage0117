@@ -1,7 +1,11 @@
 import { motion } from "motion/react";
+import { useState } from "react";
 import CountdownTimer from "./CountdownTimer";
+import ApplicationModal from "./ApplicationModal";
 
 export default function PricingSection() {
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
     return (
         <div className="w-full bg-white py-24 px-4 flex flex-col items-center">
             <div className="max-w-4xl w-full text-center">
@@ -50,6 +54,7 @@ export default function PricingSection() {
                     </ul>
 
                     <motion.button
+                        onClick={() => setIsModalOpen(true)}
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                         className="w-full bg-gradient-to-r from-[#9810fa] to-[#8200db] text-white text-2xl font-bold py-5 rounded-2xl shadow-lg hover:shadow-purple-500/30 transition-shadow"
@@ -58,6 +63,11 @@ export default function PricingSection() {
                     </motion.button>
                 </motion.div>
             </div>
+
+            <ApplicationModal
+                isOpen={isModalOpen}
+                onClose={() => setIsModalOpen(false)}
+            />
         </div>
     );
 }

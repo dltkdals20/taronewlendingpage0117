@@ -23,7 +23,7 @@ export default function ReviewsSection() {
         <div className="w-full bg-slate-50 py-24 px-4 overflow-hidden">
             <div className="max-w-6xl mx-auto">
                 <div className="text-center mb-16">
-                    <h2 className="text-3xl font-black text-slate-900 mb-4">
+                    <h2 className="text-5xl font-black text-slate-900 mb-4">
                         카드는 내가 뽑고<br />
                         <span className="text-[#8200db]">해석은 전문가가</span>
                     </h2>
