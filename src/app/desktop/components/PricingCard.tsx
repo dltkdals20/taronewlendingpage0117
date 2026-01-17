@@ -19,7 +19,7 @@ export default function PricingCard() {
                     60% OFF
                 </div>
 
-                <h3 className="text-2xl md:text-2xl font-bold text-slate-800 mb-4">
+                <h3 className="text-xl md:text-2xl font-bold text-slate-800 mb-4 pr-28 break-keep">
                     신년 타로 운세 대박 패키지
                 </h3>
 

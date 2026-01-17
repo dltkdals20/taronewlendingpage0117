@@ -27,7 +27,7 @@ export default function InfoSection() {
                     나의 올해 행운 키워드는? 지금 바로 13장의 타로 카드를 뽑아 확인해보세요.
                 </p>
 
-                <div className="w-full flex justify-center mt-16 mb-4">
+                <div className="w-full flex justify-center mt-16 -mb-32 md:-mb-24">
                     <TarotCards className="scale-45 md:scale-75 origin-top" />
                 </div>
 

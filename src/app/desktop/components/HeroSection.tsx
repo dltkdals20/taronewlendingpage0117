@@ -30,7 +30,7 @@ export default function HeroSection() {
                 <span className="absolute bottom-4 -left-4 md:-left-12 text-3xl md:text-5xl animate-pulse delay-100">✨</span>
             </div>
 
-            <p className="text-[#dab2ff] text-base md:text-xl font-medium tracking-wide mb-12 opacity-90 break-keep">
+            <p className="text-[#dab2ff] text-base md:text-xl font-medium tracking-wide mb-6 opacity-90 break-keep">
                 적토마의 해 당신의 운명을 확인하세요.
             </p>
         </div>
