@@ -29,7 +29,7 @@ export default function HeroSection() {
             </div>
 
             <p className="text-[#dab2ff] text-base md:text-xl font-medium tracking-wide mb-12 opacity-90 break-keep">
-                푸른 뱀의 해, 당신의 운명을 확인하세요
+                적토마의 해 당신의 운명을 확인하세요.
             </p>
         </div>
     );
