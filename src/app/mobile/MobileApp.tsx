@@ -33,14 +33,14 @@ export default function MobileApp() {
                     <TarotCards />
 
                     {/* Mobile Only CTA Button */}
-                    <div className="w-full pb-8 pt-4 px-4 flex justify-center">
+                    <div className="w-full pb-8 -mt-6 px-4 flex justify-center">
                         <motion.button
                             onClick={() => setIsModalOpen(true)}
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
                             className="w-full max-w-sm bg-gradient-to-r from-[#59168b] to-[#8200db] text-white text-2xl font-black py-6 rounded-full shadow-[0_0_30px_rgba(255,255,255,0.3)] border-4 border-[#dab2ff]"
                         >
-                            내 운세 확인하기 ✨
+                            신청하기 ✨
                         </motion.button>
                     </div>
                 </div>
