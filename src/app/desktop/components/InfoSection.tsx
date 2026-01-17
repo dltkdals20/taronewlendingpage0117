@@ -17,7 +17,7 @@ export default function InfoSection() {
     return (
         <div className="w-full bg-white flex flex-col items-center py-20 px-4">
             <div className="max-w-4xl w-full text-center">
-                <h2 className="text-4xl font-black text-slate-900 mb-4">
+                <h2 className="text-3xl md:text-4xl font-black text-slate-900 mb-4">
                     올해 당신을 빛나게 할<br />
                     <span className="text-[#8200db]">행운 키워드 13가지</span> ✨
                 </h2>
@@ -46,7 +46,7 @@ export default function InfoSection() {
                         onClick={() => setIsModalOpen(true)}
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
-                        className="w-full bg-gradient-to-r from-[#59168b] to-[#8200db] text-white text-4xl font-black py-8 rounded-full shadow-[0_20px_50px_-12px_rgba(89,22,139,0.5)] border-4 border-[#ad46ff]"
+                        className="w-full bg-gradient-to-r from-[#59168b] to-[#8200db] text-white text-2xl md:text-4xl font-black py-8 rounded-full shadow-[0_20px_50px_-12px_rgba(89,22,139,0.5)] border-4 border-[#ad46ff]"
                     >
                         신청하기
                     </motion.button>

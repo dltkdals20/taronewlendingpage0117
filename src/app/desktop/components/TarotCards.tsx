@@ -39,7 +39,7 @@ const Card = ({ title, symbol, number, gradient, border, rotate, delay, imgSrc }
 
 export default function TarotCards() {
     return (
-        <div className="relative w-full h-[400px] md:h-[600px] flex items-center justify-center -mt-10 md:-mt-10 overflow-visible scale-[0.6] md:scale-100 origin-top">
+        <div className="relative w-full h-[350px] md:h-[600px] flex items-center justify-center -mt-10 md:-mt-10 overflow-visible scale-[0.45] md:scale-100 origin-top">
 
             {/* Left Card - Moon */}
             <div className="absolute top-1/2 left-1/2 transform -translate-x-[110%] -translate-y-[45%] z-10">
