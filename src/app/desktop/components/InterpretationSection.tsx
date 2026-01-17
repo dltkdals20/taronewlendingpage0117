@@ -33,7 +33,7 @@ export default function InterpretationSection() {
                             금전운 해석 예시
                         </div>
 
-                        <h3 className="text-3xl font-black text-slate-800 mb-8 leading-tight">
+                        <h3 className="text-3xl font-black text-slate-800 mb-8 leading-tight break-keep">
                             "돈이 밝아지고(가시화)<br />
                             잘 돌고(현금흐름)<br />
                             <span className="text-[#d08700]">성과로 증명되는</span>" 해

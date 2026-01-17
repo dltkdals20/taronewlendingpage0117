@@ -105,10 +105,10 @@ export default function StepsSection() {
                             <div className="flex flex-col md:flex-row items-center w-full gap-8 mt-6 md:mt-0">
                                 {/* Text Content */}
                                 <div className="flex-1 text-center md:text-left md:pl-8">
-                                    <h3 className="text-2xl font-black text-slate-900 mb-3">
+                                    <h3 className="text-2xl font-black text-slate-900 mb-3 break-keep">
                                         {item.title}
                                     </h3>
-                                    <p className="text-slate-600 text-lg whitespace-pre-line leading-relaxed">
+                                    <p className="text-slate-600 text-lg whitespace-pre-line leading-relaxed break-keep">
                                         {item.description}
                                     </p>
                                 </div>

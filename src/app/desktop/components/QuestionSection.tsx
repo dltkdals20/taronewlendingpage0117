@@ -2,7 +2,7 @@ export default function QuestionSection() {
     return (
         <div className="w-full bg-white py-16 px-4 flex flex-col items-center justify-center">
             <div className="max-w-4xl w-full text-center">
-                <h3 className="text-3xl md:text-4xl font-bold text-slate-800 leading-relaxed mb-12">
+                <h3 className="text-3xl md:text-4xl font-bold text-slate-800 leading-relaxed mb-12 break-keep">
                     유니버셜 웨이트 78장에서, 어떤<br />
                     <span className="text-[#8200db]">올해 행운의 키워드 13개</span>를 뽑나요?
                 </h3>
