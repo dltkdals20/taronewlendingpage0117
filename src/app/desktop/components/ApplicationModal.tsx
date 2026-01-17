@@ -30,16 +30,19 @@ export default function ApplicationModal({ isOpen, onClose }: ApplicationModalPr
             // Using no-cors mode to bypass CORS restriction.
             // Note: This yields an opaque response (status 0), so we cannot check response.ok.
             // We assume success if no network error is thrown.
-            await fetch("https://webhook-processor-production-bfe2.up.railway.app/webhook/a8729524-5a79-42f8-99c4-c2e49e28b3fe", {
+            const now = new Date();
+            const kstTime = new Date(now.getTime() + (9 * 60 * 60 * 1000));
+            const timestampKST = kstTime.toISOString().replace('Z', '+09:00');
+
+            await fetch("https://primary-production-6a869.up.railway.app/webhook-test/a8729524-5a79-42f8-99c4-c2e49e28b3fe", {
                 method: "POST",
-                mode: "no-cors",
                 headers: {
-                    "Content-Type": "text/plain",
+                    "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
                     name: name,
                     phone: phone,
-                    timestamp: new Date().toISOString()
+                    timestamp: timestampKST
                 }),
             });
 
