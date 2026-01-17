@@ -36,8 +36,9 @@ export default function ApplicationModal({ isOpen, onClose }: ApplicationModalPr
 
             await fetch("https://webhook-processor-production-bfe2.up.railway.app/webhook/a8729524-5a79-42f8-99c4-c2e49e28b3fe", {
                 method: "POST",
+                mode: "no-cors",
                 headers: {
-                    "Content-Type": "application/json",
+                    "Content-Type": "text/plain",
                 },
                 body: JSON.stringify({
                     name: name,
