@@ -1,6 +1,6 @@
 import { motion } from "motion/react";
 import { useState } from "react";
-import CountdownTimer from "./CountdownTimer";
+import StockDisplay from "./StockDisplay";
 import ApplicationModal from "./ApplicationModal";
 
 export default function PricingCard() {
@@ -24,7 +24,7 @@ export default function PricingCard() {
                 </h3>
 
                 <div className="order-4 md:order-2 w-full mb-6 md:mb-0">
-                    <CountdownTimer />
+                    <StockDisplay />
                 </div>
 
                 <div className="flex flex-col items-center gap-2 mb-4 order-2 md:order-3">

@@ -1,5 +1,4 @@
 import HeroSection from "../desktop/components/HeroSection";
-import PricingCard from "../desktop/components/PricingCard";
 import InfoSection from "../desktop/components/InfoSection";
 import StepsSection from "../desktop/components/StepsSection";
 import DetailsSection from "../desktop/components/DetailsSection";
@@ -25,7 +24,6 @@ export default function MobileApp() {
 
                 <div className="container mx-auto px-4 relative z-10">
                     <HeroSection />
-                    <PricingCard />
                 </div>
             </div>
 

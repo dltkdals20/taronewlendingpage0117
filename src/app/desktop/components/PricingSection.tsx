@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "motion/react";
-import CountdownTimer from "./CountdownTimer";
+import StockDisplay from "./StockDisplay";
 import ApplicationModal from "./ApplicationModal";
 
 export default function PricingSection() {
@@ -15,7 +15,7 @@ export default function PricingSection() {
                 </h2>
 
                 <div className="flex flex-col items-center gap-10 mt-12">
-                    <CountdownTimer />
+                    <StockDisplay />
 
                     <div className="flex flex-col items-center gap-2">
                         <div className="text-slate-400 text-xl font-medium line-through decoration-slate-400/50">

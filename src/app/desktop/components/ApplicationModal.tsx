@@ -1,12 +1,15 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
+import { supabase } from "../../lib/supabaseClient";
+import { calculateTimeBasedStock } from "../../utils/timeBasedStock";
 
 interface ApplicationModalProps {
     isOpen: boolean;
     onClose: () => void;
+    onStockDecreased?: (newStock: number) => void;
 }
 
-export default function ApplicationModal({ isOpen, onClose }: ApplicationModalProps) {
+export default function ApplicationModal({ isOpen, onClose, onStockDecreased }: ApplicationModalProps) {
     const [name, setName] = useState("");
     const [phone, setPhone] = useState("");
     const [agreed, setAgreed] = useState(false);
@@ -50,6 +53,47 @@ export default function ApplicationModal({ isOpen, onClose }: ApplicationModalPr
 
             // With no-cors, we can't verify the server response, but request was sent.
             setIsSuccess(true);
+
+            // 신청 횟수 증가 (신청 완료 시)
+            try {
+                console.log("신청 횟수 증가 시작...");
+                const { data: appCountData, error: appCountError } = await supabase.rpc("increment_application_count");
+                
+                if (appCountError) {
+                    console.error("신청 횟수 증가 오류:", appCountError);
+                } else {
+                    console.log("신청 횟수 증가 성공:", appCountData);
+                    
+                    // sold_out_at 조회
+                    const { data: soldOutAtData } = await supabase.rpc("get_sold_out_at");
+                    const soldOutAt = soldOutAtData || null;
+                    
+                    // 시간대별 계산값 가져오기
+                    const timeBasedStock = calculateTimeBasedStock(soldOutAt);
+                    const newDisplayStock = Math.max(0, timeBasedStock - (appCountData || 0));
+                    
+                    console.log("새로운 표시 재고:", newDisplayStock);
+                    
+                    // 재고가 0이 되면 sold_out_at 기록
+                    if (newDisplayStock === 0) {
+                        console.log("재고가 0이 되었습니다. sold_out_at 기록...");
+                        const { error: soldOutError } = await supabase.rpc("set_sold_out_at");
+                        if (soldOutError) {
+                            console.error("sold_out_at 기록 오류:", soldOutError);
+                        } else {
+                            console.log("sold_out_at 기록 성공");
+                        }
+                    }
+                    
+                    // UI 즉시 갱신
+                    if (onStockDecreased) {
+                        onStockDecreased(newDisplayStock);
+                    }
+                }
+            } catch (stockError) {
+                console.error("신청 횟수 증가 예외 발생:", stockError);
+                // 신청 횟수 증가 실패해도 신청은 성공으로 처리
+            }
 
             // Meta Pixel Event
             (window as any).fbq('track', 'SubmitApplication');
