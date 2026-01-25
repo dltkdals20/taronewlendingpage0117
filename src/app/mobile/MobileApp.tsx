@@ -28,8 +28,8 @@ export default function MobileApp() {
             </div>
 
             {/* Middle Sections */}
-            <InfoSection />
             <StepsSection />
+            <InfoSection />
             <DetailsSection />
             <QuestionSection />
             <InterpretationSection />

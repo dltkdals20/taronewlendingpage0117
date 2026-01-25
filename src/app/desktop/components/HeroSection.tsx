@@ -12,11 +12,11 @@ export default function HeroSection() {
         <div className="relative w-full flex flex-col items-center pt-8 md:pt-20 pb-2 text-center z-10 box-border px-4">
             {/* Main Heading */}
             <div className="relative z-10 mb-8">
-                <h1 className="text-5xl md:text-[64px] font-black leading-[1.2] md:leading-[1.1] text-transparent bg-clip-text bg-gradient-to-b from-[#ffd700] to-[#ffdf20] drop-shadow-[0_4px_4px_rgba(0,0,0,0.25)] break-keep">
-                    2026 병오년<br />
-                    신년 운세 대박<br className="md:hidden" />
-                    <span className="hidden md:inline"> </span>
-                    타로 보기
+
+
+                <h1 className="text-2xl min-[400px]:text-3xl md:text-5xl font-black leading-snug md:leading-snug text-transparent bg-clip-text bg-gradient-to-b from-[#ffd700] to-[#ffdf20] drop-shadow-[0_4px_4px_rgba(0,0,0,0.5)] mb-6 break-keep px-2">
+                    2026년 나의 재물과<br className="md:hidden" /> 운의 흐름은?<br />
+                    직접 뽑고 타로마스터에게 해석 받기
                 </h1>
 
                 {/* Decorative Stars around heading */}
@@ -37,7 +37,7 @@ export default function HeroSection() {
                     </div>
 
                     <div className="flex items-center justify-center gap-2 mb-2">
-                        <span className="text-slate-400 text-lg md:text-xl line-through">25,000원</span>
+                        <span className="text-xl md:text-2xl font-black text-transparent bg-clip-text bg-gradient-to-b from-[#ffd700] to-[#ffdf20] drop-shadow-sm">비대면 상품</span>
                     </div>
 
                     <div className="flex items-baseline justify-center gap-2">

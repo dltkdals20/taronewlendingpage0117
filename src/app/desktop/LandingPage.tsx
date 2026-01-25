@@ -31,8 +31,8 @@ export default function LandingPage() {
 
             {/* Middle Sections */}
             {/* Middle Sections */}
-            <InfoSection />
             <StepsSection />
+            <InfoSection />
             <DetailsSection />
             <QuestionSection />
             <InterpretationSection />
